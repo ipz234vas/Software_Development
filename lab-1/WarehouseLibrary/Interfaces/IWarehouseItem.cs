@@ -6,5 +6,7 @@
         int Count { get; set; }
         DateTime LastIncoming { get; set; }
         IMoney GetTotalPrice();
+        void Add(IWarehouseItem item);
+        string GetFullInfo();
     }
 }
