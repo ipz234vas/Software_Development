@@ -33,7 +33,7 @@ public class Currency : ICurrency
 ### 2. Single Responsibility Principle (SRP)
 Each class has a single responsibility, ensuring better maintainability and readability. To achieve it, some classes were divided into separate components. For example, reporting functionality was separated into distinct interfaces and implementations.
 
-**Example:** [IReporting.cs](lab-1/WarehouseLibrary/Interfaces/IReporting.cs), [IReportGenerator.cs](lab-1/WarehouseLibrary/Interfaces/IReportGenerator.cs)
+**Example:** [IReporting.cs](https://github.com/ipz234vas/Software_Development/blob/lab-1/lab-1/WarehouseLibrary/Interfaces/IReporting.cs), [IReportGenerator.cs](https://github.com/ipz234vas/Software_Development/blob/lab-1/lab-1/WarehouseLibrary/Interfaces/IReportGenerator.cs)
 ```csharp
 namespace WarehouseLibrary.Interfaces
 {
@@ -149,7 +149,7 @@ namespace WarehouseLibrary
 ```
 
 ### 3. Open/Closed Principle
-The code is designed to be open for extension but closed for modification by using abstract classes and interfaces. One of the greatest examples is [Money.cs](lab-1/WarehouseLibrary/Models/Money.cs). Its functionality was extended by [MoneyExtensions.cs](lab-1/WarehouseLibrary/Helpers/MoneyExtensions.cs). It also supports SRP.
+The code is designed to be open for extension but closed for modification by using abstract classes and interfaces. One of the greatest examples is [Money.cs](https://github.com/ipz234vas/Software_Development/blob/lab-1/lab-1/WarehouseLibrary/Models/Money.cs). Its functionality was extended by [MoneyExtensions.cs](https://github.com/ipz234vas/Software_Development/blob/lab-1/lab-1/WarehouseLibrary/Helpers/MoneyExtensions.cs). It also supports SRP.
 **Example:**
 ```csharp
 using WarehouseLibrary.Interfaces;
@@ -190,7 +190,7 @@ public static class MoneyExtensions
 
 ### 4. Liskov Substitution Principle (Barbara Principle)
 Subclasses can be used interchangeably with their base classes without altering the correctness of the program.
-It is achived by providing [Interfaces](lab-1/WarehouseLibrary/Interfaces) 
+It is achived by providing [Interfaces](https://github.com/ipz234vas/Software_Development/tree/lab-1/lab-1/WarehouseLibrary/Interfaces) 
 
 **Example:**
 ```csharp
@@ -221,7 +221,7 @@ public class Currency : ICurrency
 
 ### 5. Dependency Inversion Principle
 High-level modules do not depend on low-level modules. Instead, both depend on abstractions.
-[Reporting Class](lab-1/WarehouseLibrary/Services/Reporting.cs) does not depend on a specific implementation; rather, it is generic and can be used for formatting any type of report.
+[Reporting Class](https://github.com/ipz234vas/Software_Development/blob/lab-1/lab-1/WarehouseLibrary/Services/Reporting.cs) does not depend on a specific implementation; rather, it is generic and can be used for formatting any type of report.
 
 **Example:**
 ```csharp
@@ -254,7 +254,7 @@ public class Reporting<T> : IReporting<T>
 ```
 
 ### 6. Composition over Inheritance
-Instead of inheritance, composition is used to promote flexibility. Instead of creating separate subclasses for different currencies, a single [ICurrency](lab-1/WarehouseLibrary/Interfaces/ICurrency.cs) interface is used. This allows any new currency to be introduced without modifying existing code—just by implementing the interface and injecting it into [IMoney](https://github.com/ipz234vas/Software_Development/blob/lab-1/lab-1/WarehouseLibrary/Interfaces/IMoney.cs). 
+Instead of inheritance, composition is used to promote flexibility. Instead of creating separate subclasses for different currencies, a single [ICurrency](https://github.com/ipz234vas/Software_Development/blob/lab-1/lab-1/WarehouseLibrary/Interfaces/ICurrency.cs) interface is used. This allows any new currency to be introduced without modifying existing code—just by implementing the interface and injecting it into [IMoney](https://github.com/ipz234vas/Software_Development/blob/lab-1/lab-1/WarehouseLibrary/Interfaces/IMoney.cs). 
 
 **Example:**
 ```csharp
@@ -308,7 +308,7 @@ A great example is the validation implemented in [Money line 11-37](https://gith
 ```
 
 ### 8. DRY (Don't Repeat Yourself)
-Code duplication is minimized by extracting reusable components and functions in [Helpers](lab-1/WarehouseLibrary/Helpers) Such as [MoneyConvertor](lab-1/WarehouseLibrary/Helpers/MoneyConvertor.cs).
+Code duplication is minimized by extracting reusable components and functions in [Helpers](https://github.com/ipz234vas/Software_Development/tree/lab-1/lab-1/WarehouseLibrary/Helpers) Such as [MoneyConvertor](https://github.com/ipz234vas/Software_Development/blob/lab-1/lab-1/WarehouseLibrary/Helpers/MoneyConvertor.cs).
 
 **Example:**
 ```csharp
