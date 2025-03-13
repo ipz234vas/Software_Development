@@ -10,7 +10,6 @@
 
   <ItemGroup>
     <Folder Include="Laptops\" />
-    <Folder Include="EBooks\" />
     <Folder Include="NetBooks\" />
   </ItemGroup>
 

@@ -1,6 +1,4 @@
 ﻿using System.Text;
-using System.Threading.Channels;
-using System.Xml.Linq;
 
 namespace Abstract_Factory.Smartphones
 {
