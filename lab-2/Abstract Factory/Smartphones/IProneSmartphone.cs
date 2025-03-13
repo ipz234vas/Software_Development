@@ -2,7 +2,7 @@
 {
     public class IProneSmartphone : Smartphone
     {
-        public override string OS => "NacOS";
+        public override string OS => "UOS";
         public bool WithFaceID { get; set; }
         public IProneSmartphone()
         {
