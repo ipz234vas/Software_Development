@@ -1,8 +1,9 @@
-﻿using System.Text;
+﻿using Abstract_Factory.Interfaces;
+using System.Text;
 
 namespace Abstract_Factory.EBooks
 {
-    public abstract class EBook
+    public abstract class EBook : IDevice
     {
         public abstract string Brand { get; }
         public string Model { get; set; }  

@@ -2,11 +2,11 @@
 
 namespace Abstract_Factory.EBooks
 {
-    public class IproneEbook : EBook
+    public class IproneEBook : EBook
     {
         public override string Brand => "Iprone";
         public bool SupportsApplePencil { get; set; }
-        public IproneEbook()
+        public IproneEBook()
         {
             Model = "EBook 30000 Ultra";
             ScreenSize = 12;

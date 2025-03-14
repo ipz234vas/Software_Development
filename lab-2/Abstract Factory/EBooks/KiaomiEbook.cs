@@ -1,10 +1,10 @@
 ﻿namespace Abstract_Factory.EBooks
 {
-    public class KiaomiEbook : EBook
+    public class KiaomiEBook : EBook
     {
         public override string Brand => "Kiaomi";
         public bool SupportsFastCharging { get; set; }
-        public KiaomiEbook()
+        public KiaomiEBook()
         {
             Model = "Reader 12 Pro Max";
             ScreenSize = 8.4;

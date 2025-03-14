@@ -1,8 +1,9 @@
-﻿using System.Text;
+﻿using Abstract_Factory.Interfaces;
+using System.Text;
 
 namespace Abstract_Factory.SmartWatches
 {
-    public abstract class SmartWatch
+    public abstract class SmartWatch  : IDevice
     {
         public abstract string OS { get; }              
         public string Model { get; set; }

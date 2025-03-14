@@ -1,8 +1,9 @@
-﻿using System.Text;
+﻿using Abstract_Factory.Interfaces;
+using System.Text;
 
 namespace Abstract_Factory.Laptops
 {
-    public abstract class Laptop
+    public abstract class Laptop : IDevice
     {
         public abstract string OS { get; }  
         public string Model { get; set; }  
