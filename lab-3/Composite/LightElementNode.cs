@@ -4,17 +4,13 @@ namespace Composite
 {
     public class LightElementNode : LightNode
     {
-        private readonly string _name;
-        private readonly string _displayType;
-        private readonly string _closingType;
+        private readonly LightElementTag _tagInfo;
         private readonly HashSet<string> _cssClasses = new();
         private readonly List<LightNode> _children = new();
 
-        public LightElementNode(string name, string displayType, string closingType)
+        public LightElementNode(LightElementTag tagInfo)
         {
-            _name = name;
-            _displayType = displayType;
-            _closingType = closingType;
+            _tagInfo = tagInfo;
         }
 
         public int GetChildrenCount()
@@ -28,8 +24,8 @@ namespace Composite
 
         public void AddChild(LightNode child)
         {
-            if (_displayType == "inline" && child is LightElementNode childElement && childElement._displayType == "block")
-                throw new ArgumentException($"Cannot add block <{childElement._name}> inside inline <{_name}>");
+            if (_tagInfo.ClosingType == "inline" && child is LightElementNode childElement && childElement._tagInfo.DisplayType == "block")
+                throw new ArgumentException($"Cannot add block <{childElement._tagInfo.Name}> inside inline <{_tagInfo.Name}>");
 
             _children.Add(child);
         }
@@ -60,19 +56,19 @@ namespace Composite
         public override string GetOuterHTML()
         {
             StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.Append('<').Append(_name);
+            stringBuilder.Append('<').Append(_tagInfo.Name);
 
             if (_cssClasses.Any())
                 stringBuilder.Append(" class=\"").Append(string.Join(' ', _cssClasses)).Append('"');
 
-            if (_closingType == "self_closing")
+            if (_tagInfo.ClosingType == "self_closing")
                 stringBuilder.Append("/>");
 
-            else if (_closingType == "paired")
+            else if (_tagInfo.ClosingType == "paired")
                 stringBuilder
                     .Append('>')
                     .Append(GetInnerHTML())
-                    .Append("</").Append(_name).Append('>');
+                    .Append("</").Append(_tagInfo.Name).Append('>');
 
             return stringBuilder.ToString();
         }

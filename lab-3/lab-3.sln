@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Proxy", "Proxy\Proxy.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Composite", "Composite\Composite.csproj", "{A055B242-C952-4963-9C53-E7C49B289E9C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flyweight", "Flyweight\Flyweight.csproj", "{3ECABF87-9E3F-4E34-8DBA-9597C3C81CAF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{A055B242-C952-4963-9C53-E7C49B289E9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A055B242-C952-4963-9C53-E7C49B289E9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A055B242-C952-4963-9C53-E7C49B289E9C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3ECABF87-9E3F-4E34-8DBA-9597C3C81CAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3ECABF87-9E3F-4E34-8DBA-9597C3C81CAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3ECABF87-9E3F-4E34-8DBA-9597C3C81CAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3ECABF87-9E3F-4E34-8DBA-9597C3C81CAF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
