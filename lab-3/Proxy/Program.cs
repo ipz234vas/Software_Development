@@ -1,16 +1,19 @@
 ﻿using Proxy;
 
+//var rootPath = "../../../"; //for visual studio
+var rootPath = ""; //for cli "dotnet run"
+
 ISmartTextReader smartTextReader = new SmartTextReader();
-smartTextReader.ReadFileToArray("../../../test.txt");
+smartTextReader.ReadFileToArray(rootPath + "test.txt");
 
 Console.WriteLine("Smart Text Checker:\n");
 ISmartTextReader smartTextChecker = new SmartTextChecker(smartTextReader);
-smartTextChecker.ReadFileToArray("../../../limited/test.txt");
+smartTextChecker.ReadFileToArray(rootPath + "limited/test.txt");
 Console.WriteLine();
 smartTextChecker.ReadFileToArray("notexist.txt");
 
 Console.WriteLine("\n\nSmart Text Reader Locker:\n");
 ISmartTextReader smartTextReaderLocker = new SmartTextReaderLocker(smartTextChecker);
-smartTextReaderLocker.ReadFileToArray("../../../limited/test.txt");
+smartTextReaderLocker.ReadFileToArray(rootPath + "limited/test.txt");
 Console.WriteLine();
-smartTextReaderLocker.ReadFileToArray("../../../test.txt");
+smartTextReaderLocker.ReadFileToArray(rootPath + "test.txt");
