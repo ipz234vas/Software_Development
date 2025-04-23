@@ -7,8 +7,6 @@ class Program
     {
         //var filePath = "book.txt"; //for cli "dotnet run"
         var filePath = "../../../book.txt"; //for visual studio
-        MeasureMemoryUsage("Without Flyweight", () =>
-            new LightHTMLFileParser(filePath, new LineToHTMLParser()));
 
         MeasureMemoryUsage("With Flyweight", () =>
             new LightHTMLFileParser(filePath, new LineToHTMLFlyweightParser()));

@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using Flyweight;
+using System.Text;
 
 namespace Composite
 {
@@ -8,9 +9,9 @@ namespace Composite
         private readonly HashSet<string> _cssClasses = new();
         private readonly List<LightNode> _children = new();
 
-        public LightElementNode(LightElementTag tagInfo)
+        public LightElementNode(string name, string displayType, string closingType)
         {
-            _tagInfo = tagInfo;
+            _tagInfo = LightElementTagFactory.GetLightElementTag(name, displayType, closingType);
         }
 
         public int GetChildrenCount()

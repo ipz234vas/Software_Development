@@ -1,19 +1,19 @@
 ﻿using Composite;
 
-var div = new LightElementNode(new LightElementTag( "div", "block", "paired"));
+var div = new LightElementNode("div", "block", "paired");
 div.AddClass("container");
 
-var ul = new LightElementNode(new LightElementTag("ul", "block", "paired"));
+var ul = new LightElementNode("ul", "block", "paired");
 ul.AddClass("list");
 
-var li1 = new LightElementNode(new LightElementTag("li", "block", "paired"));
+var li1 = new LightElementNode("li", "block", "paired");
 li1.AddChild(new LightTextNode("First item"));
 
-var li2 = new LightElementNode(new LightElementTag("li", "block", "paired"));
-li2.AddChild(new LightElementNode(new LightElementTag("img", "inline", "self_closing")));
+var li2 = new LightElementNode("li", "block", "paired");
+li2.AddChild(new LightElementNode("img", "inline", "self_closing"));
 
-var li3 = new LightElementNode(new LightElementTag("li", "block", "paired"));
-var span = new LightElementNode(new LightElementTag("span", "inline", "paired"));
+var li3 = new LightElementNode("li", "block", "paired");
+var span = new LightElementNode("span", "inline", "paired");
 span.AddChild(new LightTextNode("Third item"));
 span.AddClass("highlight-text");
 li3.AddChild(span);
