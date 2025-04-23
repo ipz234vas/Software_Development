@@ -1,13 +1,16 @@
-﻿using Flyweight;
+﻿using Composite.Observer;
+using Flyweight;
+using System;
 using System.Text;
 
 namespace Composite
 {
-    public class LightElementNode : LightNode
+    public class LightElementNode : LightNode, ISubject
     {
         private readonly LightElementTag _tagInfo;
         private readonly HashSet<string> _cssClasses = new();
         private readonly List<LightNode> _children = new();
+        private readonly Dictionary<EventType, List<IEventListener>> _listeners = new();
 
         public LightElementNode(string name, string displayType, string closingType)
         {
@@ -72,6 +75,34 @@ namespace Composite
                     .Append("</").Append(_tagInfo.Name).Append('>');
 
             return stringBuilder.ToString();
+        }
+
+        public override string ToString()
+        {
+            return '<' + _tagInfo.Name + '>';
+        }
+
+        public void InvokeEvent(EventType eventType, object? data = null)
+        {
+            if (_listeners.TryGetValue(eventType, out var list))
+            {
+                foreach (var listener in list)
+                    listener.Update(this, eventType, data);
+            }
+        }
+
+        public void AddEventListener(EventType eventType, IEventListener listener)
+        {
+            if (!_listeners.ContainsKey(eventType))
+                _listeners[eventType] = new List<IEventListener>();
+            if (!_listeners[eventType].Contains(listener))
+                _listeners[eventType].Add(listener);
+        }
+
+        public void RemoveEventListener(EventType eventType, IEventListener listener)
+        {
+            if (_listeners.TryGetValue(eventType, out var list))
+                list.Remove(listener);
         }
     }
 }
