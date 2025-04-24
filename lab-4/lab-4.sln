@@ -5,7 +5,9 @@ VisualStudioVersion = 17.10.35027.167
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChainOfResponsibility", "ChainOfResponsibility\ChainOfResponsibility.csproj", "{E83C82AF-B62B-4C95-B634-CFA382C059FF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mediator", "Mediator\Mediator.csproj", "{6F5CD115-101D-41C2-9FEB-E53AEBBF08EF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mediator", "Mediator\Mediator.csproj", "{6F5CD115-101D-41C2-9FEB-E53AEBBF08EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Memento", "Memento\Memento.csproj", "{BE67FBBC-2CF9-427E-B49B-1524F3C168C6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{6F5CD115-101D-41C2-9FEB-E53AEBBF08EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6F5CD115-101D-41C2-9FEB-E53AEBBF08EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6F5CD115-101D-41C2-9FEB-E53AEBBF08EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE67FBBC-2CF9-427E-B49B-1524F3C168C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE67FBBC-2CF9-427E-B49B-1524F3C168C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE67FBBC-2CF9-427E-B49B-1524F3C168C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE67FBBC-2CF9-427E-B49B-1524F3C168C6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
