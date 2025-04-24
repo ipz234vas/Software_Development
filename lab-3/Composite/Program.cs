@@ -11,20 +11,20 @@ internal class Program
 
     private static void RunCompositeExample()
     {
-        var div = new LightElementNode("div", "block", "paired");
+        var div = new LightContainerElementNode("div", "block", "paired");
         div.AddClass("container");
 
-        var ul = new LightElementNode("ul", "block", "paired");
+        var ul = new LightContainerElementNode("ul", "block", "paired");
         ul.AddClass("list");
 
-        var li1 = new LightElementNode("li", "block", "paired");
+        var li1 = new LightContainerElementNode("li", "block", "paired");
         li1.AddChild(new LightTextNode("First item"));
 
-        var li2 = new LightElementNode("li", "block", "paired");
-        li2.AddChild(new LightElementNode("img", "inline", "self_closing"));
+        var li2 = new LightContainerElementNode("li", "block", "paired");
+        li2.AddChild(new LightContainerElementNode("img", "inline", "self_closing"));
 
-        var li3 = new LightElementNode("li", "block", "paired");
-        var span = new LightElementNode("span", "inline", "paired");
+        var li3 = new LightContainerElementNode("li", "block", "paired");
+        var span = new LightContainerElementNode("span", "inline", "paired");
         span.AddChild(new LightTextNode("Third item"));
         span.AddClass("highlight-text");
         li3.AddChild(span);
@@ -44,7 +44,7 @@ internal class Program
 
     private static void RunObserverExample()
     {
-        ISubject button = new LightElementNode("button", "block", "paired");
+        ISubject button = new LightContainerElementNode("button", "block", "paired");
 
         IEventListener logger = new LoggerListener();
         IEventListener formSender = new FormSenderListener();

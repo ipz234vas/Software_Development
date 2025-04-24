@@ -6,7 +6,7 @@ namespace Flyweight.LineToHTMLParsers
     {
         public LightNode ProcessFirstLine(string line)
         {
-            var h1 = new LightElementNode("h1", "block", "paired");
+            var h1 = new LightContainerElementNode("h1", "block", "paired");
 
             h1.AddChild(new LightTextNode(line));
 
@@ -15,14 +15,14 @@ namespace Flyweight.LineToHTMLParsers
 
         public LightNode ProcessLine(string line)
         {
-            LightElementNode node;
+            LightContainerElementNode node;
 
             if (line.StartsWith(' '))
-                node = new LightElementNode("blockquote", "block", "paired");
+                node = new LightContainerElementNode("blockquote", "block", "paired");
             else if (line.Length < 20)
-                node = new LightElementNode("h2", "block", "paired");
+                node = new LightContainerElementNode("h2", "block", "paired");
             else
-                node = new LightElementNode("p", "block", "paired");
+                node = new LightContainerElementNode("p", "block", "paired");
 
             node.AddChild(new LightTextNode(line));
 
