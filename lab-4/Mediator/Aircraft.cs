@@ -1,37 +1,34 @@
 ﻿namespace Mediator
 {
-    class Aircraft
+    public class Aircraft
     {
-        public string Name;
-        public Runway? CurrentRunway { get; set; }
+        public string Name { get; }
         public bool IsTakingOff { get; set; }
-        public Aircraft(string name, int size)
+
+        private readonly IAirportMediator _mediator;
+
+        public Aircraft(string name, IAirportMediator mediator)
         {
-            this.Name = name;
+            Name = name;
+            _mediator = mediator;
         }
-        public void Land(Runway runway)
+
+        public void Land()
         {
             Console.WriteLine($"Aircraft {this.Name} is landing.");
-            Console.WriteLine($"Checking runway.");
-            if (runway.IsBusyWithAircraft == null)
-            {
+            if (_mediator.RequestLanding(this))
                 Console.WriteLine($"Aircraft {this.Name} has landed.");
-                runway.IsBusyWithAircraft = this;
-                runway.HighLightRed();
-                this.CurrentRunway = runway;
-            }
             else
-            {
                 Console.WriteLine($"Could not land, the runway is busy.");
-            }
         }
-        public void TakeOff(Runway runway)
+
+        public void TakeOff()
         {
             Console.WriteLine($"Aircraft {this.Name} is taking off.");
-            runway.IsBusyWithAircraft = null;
-            this.CurrentRunway = null;
-            runway.HighLightGreen();
-            Console.WriteLine($"Aircraft {this.Name} has took off.");
+            if (_mediator.RequestTakeOff(this))
+                Console.WriteLine($"Aircraft {this.Name} has took off.");
+            else
+                Console.WriteLine($"Aircraft {this.Name} cannot take off.");
         }
     }
 }
