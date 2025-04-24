@@ -6,7 +6,8 @@ internal class Program
     private static void Main(string[] args)
     {
         //RunCompositeExample();
-        RunObserverExample();
+        //RunObserverExample();
+        RunStrategyExample();
     }
 
     private static void RunCompositeExample()
@@ -62,5 +63,14 @@ internal class Program
         button.InvokeEvent(EventType.Click, new { name = "Andrii", lastName = "Volynets" });
         button.InvokeEvent(EventType.Mouseover, new { x = 5, y = 7 });
         button.InvokeEvent(EventType.Mouseout, new { x = 2, y = 4 });
+    }
+
+    private static void RunStrategyExample()
+    {
+        var image = new Image("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1C3f1i7DiltjS5jnwtFuBBO2GZwJS3yma-g&s");
+        image.Display();
+        image.SetHref("image.png");
+        image.Display();
+        Console.WriteLine(image.GetOuterHTML());
     }
 }
