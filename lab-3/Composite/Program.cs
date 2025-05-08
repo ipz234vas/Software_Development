@@ -1,4 +1,5 @@
 ﻿using Composite;
+using Composite.Iterator;
 using Composite.Observer;
 
 internal class Program
@@ -7,7 +8,8 @@ internal class Program
     {
         //RunCompositeExample();
         //RunObserverExample();
-        RunStrategyExample();
+        //RunStrategyExample();
+        RunIteratorExample();
     }
 
     private static void RunCompositeExample()
@@ -73,4 +75,74 @@ internal class Program
         image.Display();
         Console.WriteLine(image.GetOuterHTML());
     }
+
+    private static void RunIteratorExample()
+    {
+        var div = new LightContainerElementNode("div", "block", "paired");
+        div.AddChild(new LightTextNode("LEVEL 0"));
+
+        var ul = new LightContainerElementNode("ul", "block", "paired");
+        ul.AddChild(new LightTextNode("LEVEL 1"));
+
+        var li1 = new LightContainerElementNode("li", "block", "paired");
+        li1.AddChild(new LightTextNode("LEVEL 2 - ITEM 1"));
+
+        var child1_1 = new LightContainerElementNode("span", "inline", "paired");
+        child1_1.AddChild(new LightTextNode("LEVEL 3 - ITEM 1 - CHILD 1"));
+        li1.AddChild(child1_1);
+
+        var child1_2 = new LightContainerElementNode("span", "inline", "paired");
+        child1_2.AddChild(new LightTextNode("LEVEL 3 - ITEM 1 - CHILD 2"));
+        li1.AddChild(child1_2);
+
+        var li2 = new LightContainerElementNode("li", "block", "paired");
+        li2.AddChild(new LightTextNode("LEVEL 2 - ITEM 2"));
+
+        var child2_1 = new LightContainerElementNode("span", "inline", "paired");
+        child2_1.AddChild(new LightTextNode("LEVEL 3 - ITEM 2 - CHILD 1"));
+        li2.AddChild(child2_1);
+
+        var child2_2 = new LightContainerElementNode("span", "inline", "paired");
+        child2_2.AddChild(new LightTextNode("LEVEL 3 - ITEM 2 - CHILD 2"));
+        li2.AddChild(child2_2);
+
+        var li3 = new LightContainerElementNode("li", "block", "paired");
+        li3.AddChild(new LightTextNode("LEVEL 2 - ITEM 3"));
+
+        var child3_1 = new LightContainerElementNode("span", "inline", "paired");
+        child3_1.AddChild(new LightTextNode("LEVEL 3 - ITEM 3 - CHILD 1"));
+        li3.AddChild(child3_1);
+
+        var child3_2 = new LightContainerElementNode("span", "inline", "paired");
+        child3_2.AddChild(new LightTextNode("LEVEL 3 - ITEM 3 - CHILD 2"));
+        li3.AddChild(child3_2);
+
+        ul.AddChild(li1);
+        ul.AddChild(li2);
+        ul.AddChild(li3);
+
+        div.AddChild(ul);
+
+        Console.WriteLine("--- Depth First Traversal ---");
+        div.SetTraversalStrategy(TraversalType.DepthFirst);
+        PrintElementTraversal(div);
+
+        Console.WriteLine("\n\n--- Breadth First Traversal ---");
+        div.SetTraversalStrategy(TraversalType.BreadthFirst);
+
+        PrintElementTraversal(div);
+    }
+
+    private static void PrintElementTraversal(LightContainerElementNode container)
+    {
+        int i = 1;
+        foreach (var node in container)
+        {
+            string additionalText = "";
+            if (node is LightTextNode)
+                additionalText = " - TEXT NODE";
+                Console.WriteLine($"\nElement {i++:D2}: {node.GetOuterHTML()}{additionalText}");
+        }
+    }
+
 }
