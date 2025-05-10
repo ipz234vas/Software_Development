@@ -21,14 +21,19 @@ namespace Composite
             return _content;
         }
 
-        public override string GetOuterHTML()
-        {
-            return _content;
-        }
-
         public override void Accept(ILightNodeVisitor visitor)
         {
             visitor.Visit(this);
+        }
+
+        protected override string GetOpenTag()
+        {
+            return string.Empty;
+        }
+
+        protected override string GetCloseTag()
+        {
+            return string.Empty;
         }
     }
 }

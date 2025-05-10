@@ -9,13 +9,13 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        //RunCompositeExample();
+        RunCompositeExample();
         //RunObserverExample();
         //RunStrategyExample();
         //RunIteratorExample();
         //RunStateExample();
         //RunVisitorExample();
-        RunCommandExample();
+        //RunCommandExample();
     }
 
     private static void RunCompositeExample()
@@ -30,7 +30,7 @@ internal class Program
         li1.AddChild(new LightTextNode("First item"));
 
         var li2 = new LightContainerElementNode("li", "block", "paired");
-        li2.AddChild(new LightContainerElementNode("img", "inline", "self_closing"));
+        li2.AddChild(new Image("https://img.png"));
 
         var li3 = new LightContainerElementNode("li", "block", "paired");
         var span = new LightContainerElementNode("span", "inline", "paired");

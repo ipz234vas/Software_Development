@@ -54,6 +54,44 @@ namespace Composite
                 list.Remove(listener);
         }
 
+        protected override string GetCloseTag()
+        {
+            return "</" + _tagInfo.Name + '>';
+        }
+
+        protected override string GetOpenTag()
+        {
+            var tagStart = GetOpenTagStart();
+            var attributes = GetAttributes();
+            var tagEnd = GetOpenTagEnd();
+
+            return tagStart + attributes + tagEnd;
+        }
+
+        protected virtual string GetOpenTagStart()
+        {
+            return "<" + _tagInfo.Name;
+        }
+
+        protected virtual string GetAttributes()
+        {
+            var stringBuilder = new StringBuilder();
+            if (_cssClasses.Any())
+                stringBuilder.Append(" class=\"").Append(string.Join(' ', _cssClasses)).Append('"');
+            return stringBuilder.ToString();
+        }
+
+        protected virtual string GetOpenTagEnd()
+        {
+            if (_tagInfo.ClosingType == "self_closing")
+                return "/>";
+
+            else if (_tagInfo.ClosingType == "paired")
+                return ">";
+
+            return string.Empty;
+        }
+
         public override void Accept(ILightNodeVisitor visitor)
         {
             visitor.Visit(this);
