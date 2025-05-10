@@ -26,19 +26,9 @@ namespace Composite
             _strategy.LoadImage(_href);
         }
 
-        public override string GetOuterHTML()
+        protected override string GetAttributes()
         {
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.Append('<').Append(_tagInfo.Name);
-
-            if (_cssClasses.Any())
-                stringBuilder.Append(" class=\"").Append(string.Join(' ', _cssClasses)).Append('"');
-
-            stringBuilder.Append($" src=\"{_href}\"");
-
-            stringBuilder.Append("/>");
-
-            return stringBuilder.ToString();
+            return base.GetAttributes() + $" src=\"{_href}\"";
         }
 
         public override void Accept(ILightNodeVisitor visitor)

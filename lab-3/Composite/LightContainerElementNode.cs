@@ -47,29 +47,12 @@ namespace Composite
 
         public override string GetInnerHTML()
         {
+            if (_tagInfo.ClosingType != "paired")
+                return string.Empty;
+
             StringBuilder stringBuilder = new StringBuilder();
-            foreach (LightNode child in _children)
+            foreach (var child in _children)
                 stringBuilder.Append(child.GetOuterHTML());
-            return stringBuilder.ToString();
-        }
-
-        public override string GetOuterHTML()
-        {
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.Append('<').Append(_tagInfo.Name);
-
-            if (_cssClasses.Any())
-                stringBuilder.Append(" class=\"").Append(string.Join(' ', _cssClasses)).Append('"');
-
-            if (_tagInfo.ClosingType == "self_closing")
-                stringBuilder.Append("/>");
-
-            else if (_tagInfo.ClosingType == "paired")
-                stringBuilder
-                    .Append('>')
-                    .Append(GetInnerHTML())
-                    .Append("</").Append(_tagInfo.Name).Append('>');
-
             return stringBuilder.ToString();
         }
 
