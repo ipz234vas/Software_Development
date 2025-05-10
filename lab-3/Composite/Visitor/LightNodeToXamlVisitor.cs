@@ -25,6 +25,11 @@ namespace Composite.Visitor
                 _xamlOutput.AppendLine($"<Image Source=\"{image.GetHref()}\" />");
             }
 
+            public void Visit(Input input)
+            {
+                _xamlOutput.AppendLine($"<TextBox Text=\"{input.Text}\"/>");
+            }
+
             public void Visit(LightContainerElementNode container)
             {
                 _xamlOutput.AppendLine($"<StackPanel>");

@@ -1,7 +1,9 @@
 ﻿using Composite;
+using Composite.Command;
 using Composite.Iterator;
 using Composite.Observer;
 using Composite.Visitor.Composite;
+using System.Text;
 
 internal class Program
 {
@@ -12,7 +14,8 @@ internal class Program
         //RunStrategyExample();
         //RunIteratorExample();
         //RunStateExample();
-        RunVisitorExample();
+        //RunVisitorExample();
+        RunCommandExample();
     }
 
     private static void RunCompositeExample()
@@ -170,11 +173,98 @@ internal class Program
 
         var image = new Image("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1C3f1i7DiltjS5jnwtFuBBO2GZwJS3yma-g&s");
 
+        var input = new Input();
+        input.Text = "Hello world";
+
         div.AddChild(button);
         div.AddChild(image);
+        div.AddChild(input);
 
         div.Accept(visitor);
 
         Console.WriteLine(visitor.GetXaml());
+    }
+
+    private static void RunCommandExample()
+    {
+        var input = new Input();
+        var invoker = new CommandInvoker();
+
+        const string prompt = "Input: ";
+
+        Console.WriteLine("--- Input test ---");
+        Console.WriteLine("Enter = Save, Backspace = Remove, Ctrl+Z = Undo, Ctrl+Y = Redo, Esc = Exit.");
+        Console.WriteLine();
+
+        while (true)
+        {
+            var buffer = new StringBuilder(input.Text);
+            Console.Write(prompt);
+            Console.Write(buffer.ToString());
+
+            int cursorPos = buffer.Length;
+
+            while (true)
+            {
+                var keyInfo = Console.ReadKey(intercept: true);
+
+                if (HandleControlCommands(keyInfo, invoker))
+                    break;
+
+                if (keyInfo.Key == ConsoleKey.Enter)
+                {
+                    invoker.ExecuteCommand(new SetTextCommand(input, buffer.ToString()));
+                    Console.WriteLine();
+                    break;
+                }
+
+                if (keyInfo.Key == ConsoleKey.Backspace && cursorPos > 0)
+                {
+                    buffer.Remove(cursorPos - 1, 1);
+                    cursorPos--;
+                    RedrawLine(prompt, buffer.ToString(), cursorPos);
+                }
+                else if (!char.IsControl(keyInfo.KeyChar))
+                {
+                    buffer.Insert(cursorPos, keyInfo.KeyChar);
+                    cursorPos++;
+                    RedrawLine(prompt, buffer.ToString(), cursorPos);
+                }
+            }
+            Console.WriteLine();
+        }
+    }
+
+    private static bool HandleControlCommands(ConsoleKeyInfo keyInfo, CommandInvoker manager)
+    {
+        if (keyInfo.Key == ConsoleKey.Escape)
+            Environment.Exit(0);
+
+        if (keyInfo.Modifiers.HasFlag(ConsoleModifiers.Control))
+        {
+            if (keyInfo.Key == ConsoleKey.Z)
+            {
+                Console.WriteLine();
+                manager.Undo();
+                return true;
+            }
+
+            if (keyInfo.Key == ConsoleKey.Y)
+            {
+                Console.WriteLine();
+                manager.Redo();
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
+    private static void RedrawLine(string prompt, string text, int cursorPos)
+    {
+        Console.SetCursorPosition(0, Console.CursorTop);
+        Console.Write(prompt + text + " ");
+        Console.SetCursorPosition(prompt.Length + cursorPos, Console.CursorTop);
     }
 }
