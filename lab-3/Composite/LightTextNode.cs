@@ -1,4 +1,6 @@
-﻿namespace Composite
+﻿using Composite.Visitor.Composite;
+
+namespace Composite
 {
     public class LightTextNode : LightNode
     {
@@ -22,6 +24,11 @@
         public override string GetOuterHTML()
         {
             return _content;
+        }
+
+        public override void Accept(ILightNodeVisitor visitor)
+        {
+            visitor.Visit(this);
         }
     }
 }

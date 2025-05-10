@@ -1,4 +1,5 @@
 ﻿using Composite.Strategy;
+using Composite.Visitor.Composite;
 using System.Text;
 
 namespace Composite
@@ -18,6 +19,8 @@ namespace Composite
             _strategy = ImageLoadStrategyFactory.GetByImageSource(href);
         }
 
+        public string GetHref() => _href;
+
         public void Display()
         {
             _strategy.LoadImage(_href);
@@ -36,6 +39,11 @@ namespace Composite
             stringBuilder.Append("/>");
 
             return stringBuilder.ToString();
+        }
+
+        public override void Accept(ILightNodeVisitor visitor)
+        {
+            visitor.Visit(this);
         }
     }
 }
