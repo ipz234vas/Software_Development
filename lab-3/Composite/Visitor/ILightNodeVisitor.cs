@@ -8,5 +8,6 @@
         void Visit(LightContainerElementNode container);
         void Visit(LightNode node);
         void Visit(LightTextNode textNode);
+        void Visit(Input input);
     }
 }
