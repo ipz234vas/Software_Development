@@ -1,6 +1,7 @@
 ﻿using Composite;
 using Composite.Iterator;
 using Composite.Observer;
+using Composite.Visitor.Composite;
 
 internal class Program
 {
@@ -10,7 +11,8 @@ internal class Program
         //RunObserverExample();
         //RunStrategyExample();
         //RunIteratorExample();
-        RunStateExample();
+        //RunStateExample();
+        RunVisitorExample();
     }
 
     private static void RunCompositeExample()
@@ -145,6 +147,7 @@ internal class Program
             Console.WriteLine($"\nElement {i++:D2}: {node.GetOuterHTML()}{additionalText}");
         }
     }
+
     private static void RunStateExample()
     {
         var button = new Button();
@@ -154,5 +157,24 @@ internal class Program
         button.Press();
         button.Press();
         button.Release();
+    }
+
+    private static void RunVisitorExample()
+    {
+        ILightNodeVisitor visitor = new LightNodeToXamlVisitor();
+
+        var div = new LightContainerElementNode("div", "block", "paired");
+
+        var button = new Button();
+        button.AddChild(new LightTextNode("Press me!"));
+
+        var image = new Image("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1C3f1i7DiltjS5jnwtFuBBO2GZwJS3yma-g&s");
+
+        div.AddChild(button);
+        div.AddChild(image);
+
+        div.Accept(visitor);
+
+        Console.WriteLine(visitor.GetXaml());
     }
 }

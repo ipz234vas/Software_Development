@@ -1,5 +1,6 @@
 ﻿using Composite.Iterator;
 using Composite.Observer;
+using Composite.Visitor.Composite;
 using System.Collections;
 using System.Text;
 
@@ -70,6 +71,11 @@ namespace Composite
                     .Append("</").Append(_tagInfo.Name).Append('>');
 
             return stringBuilder.ToString();
+        }
+
+        public override void Accept(ILightNodeVisitor visitor)
+        {
+            visitor.Visit(this);
         }
 
         public IEnumerator<LightNode> GetEnumerator()

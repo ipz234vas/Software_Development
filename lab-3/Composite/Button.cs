@@ -1,4 +1,5 @@
 ﻿using Composite.State;
+using Composite.Visitor.Composite;
 
 namespace Composite
 {
@@ -21,6 +22,11 @@ namespace Composite
         {
             Console.WriteLine("Attempt of releasing button...");
             State.Release();
+        }
+
+        public override void Accept(ILightNodeVisitor visitor)
+        {
+            visitor.Visit(this);
         }
     }
 }

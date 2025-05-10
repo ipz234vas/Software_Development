@@ -1,4 +1,5 @@
 ﻿using Composite.Observer;
+using Composite.Visitor.Composite;
 using Flyweight;
 using System.Text;
 
@@ -51,6 +52,11 @@ namespace Composite
         {
             if (_listeners.TryGetValue(eventType, out var list))
                 list.Remove(listener);
+        }
+
+        public override void Accept(ILightNodeVisitor visitor)
+        {
+            visitor.Visit(this);
         }
     }
 }
