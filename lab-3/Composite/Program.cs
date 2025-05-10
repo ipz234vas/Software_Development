@@ -9,7 +9,8 @@ internal class Program
         //RunCompositeExample();
         //RunObserverExample();
         //RunStrategyExample();
-        RunIteratorExample();
+        //RunIteratorExample();
+        RunStateExample();
     }
 
     private static void RunCompositeExample()
@@ -47,7 +48,7 @@ internal class Program
 
     private static void RunObserverExample()
     {
-        ISubject button = new LightContainerElementNode("button", "block", "paired");
+        ISubject button = new Button();
 
         IEventListener logger = new LoggerListener();
         IEventListener formSender = new FormSenderListener();
@@ -141,8 +142,17 @@ internal class Program
             string additionalText = "";
             if (node is LightTextNode)
                 additionalText = " - TEXT NODE";
-                Console.WriteLine($"\nElement {i++:D2}: {node.GetOuterHTML()}{additionalText}");
+            Console.WriteLine($"\nElement {i++:D2}: {node.GetOuterHTML()}{additionalText}");
         }
     }
+    private static void RunStateExample()
+    {
+        var button = new Button();
+        button.AddEventListener(EventType.Click, new LoggerListener());
 
+        button.Release();
+        button.Press();
+        button.Press();
+        button.Release();
+    }
 }
